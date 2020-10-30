@@ -9,9 +9,36 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
         <script type="text/javascript">
-            const contract_address = "0x517c6c4ca5ce4f0fd1c0fdaf5b0ea597ce09bc84";
+            const contract_address = "0xde84cecc8a852318f947a6ba62816b62c85e67dc";
             
             const contract_abi = [
+                {
+                    "inputs": [],
+                    "name": "buyItem",
+                    "outputs": [],
+                    "stateMutability": "payable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "sellItem",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "_item_price",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "setItemPrice",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
                 {
                     "inputs": [
                         {
@@ -37,13 +64,6 @@
                     ],
                     "stateMutability": "nonpayable",
                     "type": "constructor"
-                },
-                {
-                    "inputs": [],
-                    "name": "buyItem",
-                    "outputs": [],
-                    "stateMutability": "payable",
-                    "type": "function"
                 },
                 {
                     "inputs": [],
@@ -82,26 +102,6 @@
                         }
                     ],
                     "stateMutability": "view",
-                    "type": "function"
-                },
-                {
-                    "inputs": [],
-                    "name": "sellItem",
-                    "outputs": [],
-                    "stateMutability": "nonpayable",
-                    "type": "function"
-                },
-                {
-                    "inputs": [
-                        {
-                            "internalType": "uint256",
-                            "name": "_item_price",
-                            "type": "uint256"
-                        }
-                    ],
-                    "name": "setItemPrice",
-                    "outputs": [],
-                    "stateMutability": "nonpayable",
                     "type": "function"
                 }
             ];

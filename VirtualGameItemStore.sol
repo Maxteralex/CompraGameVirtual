@@ -50,18 +50,16 @@ contract VirtualGameItemStore {
     
     // qualquer pessoa, com exceção do próprio dono, pode comprar o item vendido
     function buyItem() payable public {
-        require (msg.sender == owner, "Você já é o dono do item.");
-        require (item_sold, "O item já foi vendido.");
-        require (msg.value < item_price, "O valor enviado foi menor que o estipulado pelo dono");
+        require (msg.sender != owner, "Você já é o dono do item.");
+        require (!item_sold, "O item já foi vendido.");
+        require (msg.value >= item_price, "O valor enviado foi menor que o estipulado pelo dono");
         
-        if (msg.value >= item_price) {
-            uint change = msg.value - item_price;
-            // se o valor pago for maior que o preço do item, é devolvida a quantia excedente
-            if (change > 0) {
-                msg.sender.transfer(change);
-            }
-            owner.transfer(address(this).balance);
-            item_sold = true;
+        uint change = msg.value - item_price;
+        // se o valor pago for maior que o preço do item, é devolvida a quantia excedente
+        if (change > 0) {
+            msg.sender.transfer(change);
         }
+        owner.transfer(address(this).balance);
+        item_sold = true;
     }
 }
