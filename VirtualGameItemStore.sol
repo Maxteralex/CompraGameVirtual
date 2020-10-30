@@ -1,7 +1,7 @@
 //SPDX-License-Identifier:UNLICENSED
 pragma solidity ^0.6.12;
 
-contract SellGameItem {
+contract VirtualGameItemStore {
     address payable owner; // atual dono do item
     string owner_name; // nome do dono atual do item
     string item_name; // nome do item vendido

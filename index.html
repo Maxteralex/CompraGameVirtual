@@ -9,7 +9,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
         <script type="text/javascript">
-            const contract_address = "0x2ff49b381f1d53fdbe8b234b29b1f636ab269f23";
+            const contract_address = "0x3513771697796bd3719a33a588f216453794e901";
             
             const contract_abi = [
                 {
@@ -120,9 +120,9 @@
             };
 
             async function getAndShowItemInfo () {
-                var owner = window.SellGameItem.methods.getOwnerName().call();
-                var item = window.SellGameItem.methods.getItemName().call();
-                var price = toString(window.SellGameItem.methods.getItemPrice().call());
+                var owner = window.VirtualGameItemStore.methods.getOwnerName().call();
+                var item = window.VirtualGameItemStore.methods.getItemName().call();
+                var price = toString(window.VirtualGameItemStore.methods.getItemPrice().call());
                 var objSpan = document.getElementById("item_data");
                 objSpan.replaceChild(
                     document.createTextNode("Dono do item: ${await owner}"),
@@ -134,17 +134,17 @@
             };
 
             async function sellItem() {
-                window.SellGameItem.methods.sellItem().call();
+                window.VirtualGameItemStore.methods.sellItem().call();
             };
 
             async function setPrice() {
                 var new_price = parseInt(document.getElementById("item_price").value);
-                window.SellGameItem.methods.setPrice(new_price).call();
+                window.VirtualGameItemStore.methods.setPrice(new_price).call();
             };
 
             async function buyItem() {
                 var paid_amount = parseInt(document.getElementById("transaction_value").value);
-                window.SellGameItem.methods.buyItem().send({from:window.coinbase, to:contract_address, value:paid_amount});
+                window.VirtualGameItemStore.methods.buyItem().send({from:window.coinbase, to:contract_address, value:paid_amount});
             };
         </script>
     </head>
