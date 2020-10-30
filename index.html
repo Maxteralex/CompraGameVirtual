@@ -124,13 +124,13 @@
                 var item = window.VirtualGameItemStore.methods.getItemName().call();
                 var price = toString(window.VirtualGameItemStore.methods.getItemPrice().call());
                 var objSpan = document.getElementById("item_data");
-                objSpan.replaceChild(
-                    document.createTextNode("Dono do item: ${await owner}"),
-                    document.createElement('br'),
-                    document.createTextNode("Nome do item: ${await item}"),
-                    document.createElement('br'),
-                    document.createTextNode("Preço do item: ${await price}"),
-                );
+                var objDiv = document.createElement("div");
+                objDiv.appendChild(document.createTextNode("Dono do item: ${await owner}"));
+                objDiv.appendChild(document.createElement('br'));
+                objDiv.appendChild(document.createTextNode("Nome do item: ${await item}"));
+                objDiv.appendChild(document.createElement('br'));
+                objDiv.appendChild(document.createTextNode("Preço do item: ${await price}"));
+                objSpan.removeChild(objDiv, objSpan.firstChild);
             };
 
             // async function getAndShowItemInfo() {
