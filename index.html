@@ -9,19 +9,19 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
         <script type="text/javascript">
-            const contract_address = "0x3513771697796bd3719a33a588f216453794e901";
+            const contract_address = "0x517c6c4ca5ce4f0fd1c0fdaf5b0ea597ce09bc84";
             
             const contract_abi = [
                 {
                     "inputs": [
                         {
                             "internalType": "string",
-                            "name": "_owner_name",
+                            "name": "_item_name",
                             "type": "string"
                         },
                         {
                             "internalType": "string",
-                            "name": "_item_name",
+                            "name": "_item_info",
                             "type": "string"
                         },
                         {
@@ -47,6 +47,19 @@
                 },
                 {
                     "inputs": [],
+                    "name": "getItemInfo",
+                    "outputs": [
+                        {
+                            "internalType": "string",
+                            "name": "",
+                            "type": "string"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
                     "name": "getItemName",
                     "outputs": [
                         {
@@ -66,19 +79,6 @@
                             "internalType": "uint256",
                             "name": "",
                             "type": "uint256"
-                        }
-                    ],
-                    "stateMutability": "view",
-                    "type": "function"
-                },
-                {
-                    "inputs": [],
-                    "name": "getOwnerName",
-                    "outputs": [
-                        {
-                            "internalType": "string",
-                            "name": "",
-                            "type": "string"
                         }
                     ],
                     "stateMutability": "view",
@@ -119,15 +119,15 @@
                 window.coinbase = await window.web3.eth.getCoinbase();
             };
 
-            async function getAndShowItemInfo () {
-                var owner = window.VirtualGameItemStore.methods.getOwnerName().call();
+            async function getAndShowItemData () {
                 var item = window.VirtualGameItemStore.methods.getItemName().call();
+                var info = window.VirtualGameItemStore.methods.getItemInfo().call();
                 var price = window.VirtualGameItemStore.methods.getItemPrice().call();
                 var objSpan = document.getElementById("item_data");
                 var objDiv = document.createElement("div");
-                objDiv.appendChild(document.createTextNode("Dono do item: " + (await owner)));
-                objDiv.appendChild(document.createElement('br'));
                 objDiv.appendChild(document.createTextNode("Nome do item: " + (await item)));
+                objDiv.appendChild(document.createElement('br'));
+                objDiv.appendChild(document.createTextNode("Descrição do item: " + (await info)));
                 objDiv.appendChild(document.createElement('br'));
                 objDiv.appendChild(document.createTextNode("Preço do item: " + (await price)));
                 objSpan.replaceChild(objDiv, objSpan.firstChild);
@@ -154,7 +154,7 @@
             };
 
             if (!ethEnabled()) {
-                alert("Metamask or browser with Ethereum not detected!");
+                alert("Metamask ou browser com Ethereum não foi encontrado!");
             }
             else {
                 window.VirtualGameItemStore = new web3.eth.Contract(contract_abi, contract_address);
@@ -162,43 +162,48 @@
             }
         </script>
     </head>
-    <body>
-        <nav class="navbar navbar-expand-lg fixed-top tc-navbar">
-			<div class="container">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="index.html">Home</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-						aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-				</div>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item">
-							<a class="nav-link" href="about.html">Sobre</a>
-						</li>
-					</ul>
-				</div>
-			</div>
+    <body style="background-color: rgb(190, 190, 190);">
+        <nav class="navbar navbar-dark bg-dark row">
+            <div class="col-lg-2">
+                <a class="navbar-brand" href="#"><img src="static/img/iron_scaled_fire_dragon.gif" style="transform: scale(-1.2,1.2);"/></a>
+            </div>
+            <div class="col-lg-1">
+                <a class="nav-link" href="index.html" style="margin-right: auto;">Página Inicial</a>
+            </div>
+            <div class="col-lg-1">
+                <a class="nav-link" href="about.html">Sobre</a>
+            </div>
+            <div class="col-lg-8"></div>
         </nav>
-        <div class="container-xl main-container">
-			<div class="row main-row">
-                <div class="col-lg-12 main-content">
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <button class="btn btn-primary" onclick="getAndShowItemInfo()">Informações do Item</button>
+        <div class="container" style="margin-top: 1%;">
+            <h1>Game Virtual Item Store</h1>
+            <br/><br/>
+            <div class="card" style="background-color: rgb(218, 218, 218);">
+                <div class="card-body">
+                    <h2>Opções de Informação e Pagamento</h2>
+                    <br/><br/>
+                    <div class="row"> 
+                        <div class="col-lg-6">
+                            <button class="btn btn-primary" onclick="getAndShowItemData()">Informações do Item</button>
+                            <br/><br/>
                             <span id="item_data"> </span>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-6">
                             Valor do Pagamento: <input type="number" id="transaction_value" name="transaction_value">
-                            <button class="btn btn-primary"  onclick="buyItem()">Comprar</button>
+                            <button class="btn btn-success" style="margin-left: 5%;" onclick="buyItem()">Comprar</button>
+                            <br/><br/>
                         </div>
-                        <div class="col-lg-3">
-                            Novo Preço: <input type="number" id="item_price" name="transactionValue">
-                            <button class="btn btn-primary" onclick="setPrice()">Alterar Preço</button>
-                        </div>
-                        <div class="col-lg-3">
+                    </div>
+                    <br/><br/>
+                    <h2>Opções de Dono</h2>
+                    <br/><br/>
+                    <div class="row">
+                        <div class="col-lg-6">
                             <button class="btn btn-primary" onclick="sellItem()">Habilitar Venda</button>
+                        </div>
+                        <div class="col-lg-6">
+                            Novo Preço: <input type="number" id="item_price" name="transactionValue">
+                            <button class="btn btn-primary" style="margin-left: 5%;" onclick="setPrice()">Alterar Preço</button>
                         </div>
                     </div>
                 </div>
