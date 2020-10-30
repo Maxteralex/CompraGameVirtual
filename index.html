@@ -134,14 +134,14 @@
             };
 
             async function sellItem() {
-                window.VirtualGameItemStore.methods.sellItem().call();
+                window.VirtualGameItemStore.methods.sellItem().send({from:windows.coinbase});
             };
 
             async function setPrice() {
                 var new_price = document.getElementById("item_price").value;
                 if(new_price) {
                     new_price = parseInt(new_price);
-                    window.VirtualGameItemStore.methods.setItemPrice(new_price).call();
+                    window.VirtualGameItemStore.methods.setItemPrice(new_price).send(new_price, {from:window.coinbase});
                 }
             };
 
