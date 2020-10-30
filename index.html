@@ -130,7 +130,7 @@
                 objDiv.appendChild(document.createTextNode("Nome do item: ${await item}"));
                 objDiv.appendChild(document.createElement('br'));
                 objDiv.appendChild(document.createTextNode("Preço do item: ${await price}"));
-                objSpan.removeChild(objDiv, objSpan.firstChild);
+                objSpan.replaceChild(objDiv, objSpan.firstChild);
             };
 
             // async function getAndShowItemInfo() {
