@@ -133,23 +133,24 @@
                 objSpan.replaceChild(objDiv, objSpan.firstChild);
             };
 
-            // async function getAndShowItemInfo() {
-            //     var owner = window.VirtualGameItemStore.methods.getOwnerName().call();
-            //     document.getElementById("item_data").value = await owner;
-            // }
-
             async function sellItem() {
                 window.VirtualGameItemStore.methods.sellItem().call();
             };
 
             async function setPrice() {
-                var new_price = parseInt(document.getElementById("item_price").value);
-                window.VirtualGameItemStore.methods.setItemPrice(new_price).call();
+                var new_price = document.getElementById("item_price").value;
+                if(new_price) {
+                    new_price = parseInt(new_price);
+                    window.VirtualGameItemStore.methods.setItemPrice(new_price).call();
+                }
             };
 
             async function buyItem() {
-                var paid_amount = parseInt(document.getElementById("transaction_value").value);
-                window.VirtualGameItemStore.methods.buyItem().send({from:window.coinbase, to:contract_address, value:paid_amount});
+                var paid_amount = document.getElementById("transaction_value").value;
+                if(paid_amount) {
+                    paid_amount = parseInt(paid_amount);
+                    window.VirtualGameItemStore.methods.buyItem().send({from:window.coinbase, to:contract_address, value:paid_amount});
+                }
             };
 
             if (!ethEnabled()) {
@@ -183,15 +184,14 @@
         <div class="row">
             <div class="col-lg-3">
                 <button class="btn btn-primary" onclick="getAndShowItemInfo()">Informações do Item</button>
-                <!-- Valor do Pagamento: <input type="text" id="item_data" name="item_data"> -->
                 <span id="item_data"> </span>
             </div>
             <div class="col-lg-3">
-                Valor do Pagamento: <input type="text" id="transaction_value" name="transaction_value">
+                Valor do Pagamento: <input type="number" id="transaction_value" name="transaction_value">
                 <button class="btn btn-primary"  onclick="buyItem()">Comprar</button>
             </div>
             <div class="col-lg-3">
-                Novo Preço: <input type="text" id="item_price" name="transactionValue">
+                Novo Preço: <input type="number" id="item_price" name="transactionValue">
                 <button class="btn btn-primary" onclick="setPrice()">Alterar Preço</button>
             </div>
             <div class="col-lg-3">
