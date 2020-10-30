@@ -119,24 +119,24 @@
                 window.coinbase = await window.web3.eth.getCoinbase();
             };
 
-            // async function getAndShowItemInfo () {
-            //     var owner = window.VirtualGameItemStore.methods.getOwnerName().call();
-            //     var item = window.VirtualGameItemStore.methods.getItemName().call();
-            //     var price = toString(window.VirtualGameItemStore.methods.getItemPrice().call());
-            //     var objSpan = document.getElementById("item_data");
-            //     objSpan.replaceChild(
-            //         document.createTextNode("Dono do item: ${await owner}"),
-            //         document.createElement('br'),
-            //         document.createTextNode("Nome do item: ${await item}"),
-            //         document.createElement('br'),
-            //         document.createTextNode("Preço do item: ${await price}"),
-            //     );
-            // };
-
-            async function getAndShowItemInfo() {
+            async function getAndShowItemInfo () {
                 var owner = window.VirtualGameItemStore.methods.getOwnerName().call();
-                document.getElementById("item_data").value = await owner;
-            }
+                var item = window.VirtualGameItemStore.methods.getItemName().call();
+                var price = toString(window.VirtualGameItemStore.methods.getItemPrice().call());
+                var objSpan = document.getElementById("item_data");
+                objSpan.replaceChild(
+                    document.createTextNode("Dono do item: ${await owner}"),
+                    document.createElement('br'),
+                    document.createTextNode("Nome do item: ${await item}"),
+                    document.createElement('br'),
+                    document.createTextNode("Preço do item: ${await price}"),
+                );
+            };
+
+            // async function getAndShowItemInfo() {
+            //     var owner = window.VirtualGameItemStore.methods.getOwnerName().call();
+            //     document.getElementById("item_data").value = await owner;
+            // }
 
             async function sellItem() {
                 window.VirtualGameItemStore.methods.sellItem().call();
@@ -165,8 +165,8 @@
         <div class="row">
             <div class="col-lg-3">
                 <button class="btn btn-primary" onclick="getAndShowItemInfo()">Informações do Item</button>
-                Valor do Pagamento: <input type="text" id="item_data" name="item_data">
-                <!-- <span id="item_data"> </span> -->
+                <!-- Valor do Pagamento: <input type="text" id="item_data" name="item_data"> -->
+                <span id="item_data"> </span>
             </div>
             <div class="col-lg-3">
                 Valor do Pagamento: <input type="text" id="transaction_value" name="transaction_value">
