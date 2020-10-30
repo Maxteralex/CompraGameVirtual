@@ -125,11 +125,11 @@
                 var price = toString(window.VirtualGameItemStore.methods.getItemPrice().call());
                 var objSpan = document.getElementById("item_data");
                 var objDiv = document.createElement("div");
-                objDiv.appendChild(document.createTextNode("Dono do item: ${await owner}"));
+                objDiv.appendChild(document.createTextNode(("Dono do item: {0}").format(await owner)));
                 objDiv.appendChild(document.createElement('br'));
-                objDiv.appendChild(document.createTextNode("Nome do item: ${await item}"));
+                objDiv.appendChild(document.createTextNode(("Nome do item: {0}").format(await item)));
                 objDiv.appendChild(document.createElement('br'));
-                objDiv.appendChild(document.createTextNode("Preço do item: ${await price}"));
+                objDiv.appendChild(document.createTextNode(("Preço do item: {0}").format(await price)));
                 objSpan.replaceChild(objDiv, objSpan.firstChild);
             };
 
