@@ -122,7 +122,7 @@
             async function getAndShowItemInfo () {
                 var owner = window.VirtualGameItemStore.methods.getOwnerName().call();
                 var item = window.VirtualGameItemStore.methods.getItemName().call();
-                var price = (window.VirtualGameItemStore.methods.getItemPrice().call()).toString();
+                var price = window.VirtualGameItemStore.methods.getItemPrice().call();
                 var objSpan = document.getElementById("item_data");
                 var objDiv = document.createElement("div");
                 objDiv.appendChild(document.createTextNode("Dono do item: " + (await owner)));
