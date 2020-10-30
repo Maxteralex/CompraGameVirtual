@@ -180,22 +180,28 @@
 					</ul>
 				</div>
 			</div>
-		</nav>
-        <div class="row">
-            <div class="col-lg-3">
-                <button class="btn btn-primary" onclick="getAndShowItemInfo()">Informações do Item</button>
-                <span id="item_data"> </span>
-            </div>
-            <div class="col-lg-3">
-                Valor do Pagamento: <input type="number" id="transaction_value" name="transaction_value">
-                <button class="btn btn-primary"  onclick="buyItem()">Comprar</button>
-            </div>
-            <div class="col-lg-3">
-                Novo Preço: <input type="number" id="item_price" name="transactionValue">
-                <button class="btn btn-primary" onclick="setPrice()">Alterar Preço</button>
-            </div>
-            <div class="col-lg-3">
-                <button class="btn btn-primary" onclick="sellItem()">Habilitar Venda</button>
+        </nav>
+        <div class="container-xl main-container">
+			<div class="row main-row">
+                <div class="col-lg-12 main-content">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <button class="btn btn-primary" onclick="getAndShowItemInfo()">Informações do Item</button>
+                            <span id="item_data"> </span>
+                        </div>
+                        <div class="col-lg-3">
+                            Valor do Pagamento: <input type="number" id="transaction_value" name="transaction_value">
+                            <button class="btn btn-primary"  onclick="buyItem()">Comprar</button>
+                        </div>
+                        <div class="col-lg-3">
+                            Novo Preço: <input type="number" id="item_price" name="transactionValue">
+                            <button class="btn btn-primary" onclick="setPrice()">Alterar Preço</button>
+                        </div>
+                        <div class="col-lg-3">
+                            <button class="btn btn-primary" onclick="sellItem()">Habilitar Venda</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
