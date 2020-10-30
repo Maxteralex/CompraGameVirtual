@@ -151,6 +151,14 @@
                 var paid_amount = parseInt(document.getElementById("transaction_value").value);
                 window.VirtualGameItemStore.methods.buyItem().send({from:window.coinbase, to:contract_address, value:paid_amount});
             };
+
+            if (!ethEnabled()) {
+                alert("Metamask or browser with Ethereum not detected!");
+            }
+            else {
+                window.VirtualGameItemStore = new web3.eth.Contract(contract_abi, contract_address);
+                saveCoinbase();
+            }
         </script>
     </head>
     <body>
