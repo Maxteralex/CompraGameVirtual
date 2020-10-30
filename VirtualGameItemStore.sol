@@ -60,6 +60,7 @@ contract VirtualGameItemStore {
             msg.sender.transfer(change);
         }
         owner.transfer(address(this).balance);
+        owner = msg.sender;
         item_sold = true;
     }
 }
