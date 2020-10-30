@@ -144,7 +144,7 @@
 
             async function setPrice() {
                 var new_price = parseInt(document.getElementById("item_price").value);
-                window.VirtualGameItemStore.methods.setPrice(new_price).call();
+                window.VirtualGameItemStore.methods.setItemPrice(new_price).call();
             };
 
             async function buyItem() {
@@ -162,6 +162,24 @@
         </script>
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg fixed-top tc-navbar">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="index.html">Home</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="about.html">Sobre</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
         <div class="row">
             <div class="col-lg-3">
                 <button class="btn btn-primary" onclick="getAndShowItemInfo()">Informações do Item</button>
