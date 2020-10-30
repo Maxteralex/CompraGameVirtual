@@ -3,7 +3,7 @@
 ## Descrição:
 
 Volnx LTDA Game Virtual Item Store é um dApp utilizando conceitos de Blockchain para compra de itens de jogo.
-Foi desenvolvido para a matéria de Blockchain - INF1035 pelo aluno Alexandre Augusto Poggio Heine
+Foi desenvolvido para a matéria de Blockchain - INF1305 pelo aluno Alexandre Augusto Poggio Heine
 de matrícula 1711905.
 
 ## Funcionamento:
