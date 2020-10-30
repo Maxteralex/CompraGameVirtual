@@ -135,7 +135,7 @@
 
             async function getAndShowItemInfo() {
                 var owner = window.VirtualGameItemStore.methods.getOwnerName().call();
-                document.getElementById("item_data").text = owner;
+                document.getElementById("item_data").value = await owner;
             }
 
             async function sellItem() {
@@ -165,7 +165,8 @@
         <div class="row">
             <div class="col-lg-3">
                 <button class="btn btn-primary" onclick="getAndShowItemInfo()">Informações do Item</button>
-                <span id="item_data"> </span>
+                Valor do Pagamento: <input type="text" id="item_data" name="item_data">
+                <!-- <span id="item_data"> </span> -->
             </div>
             <div class="col-lg-3">
                 Valor do Pagamento: <input type="text" id="transaction_value" name="transaction_value">
